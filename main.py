@@ -22,45 +22,58 @@ def get_disk_info():
    return info_part
 
 def tool(part):
-   print("""\n#Scan #Scan_Image #Get_Image""")
+   print("""\n#Scan #Get_Image""")
 
-   key = input("==> ")
+   key = input("\n==> ")
 
-   # Get key & save
+   # Get key & save image
    if key == "Get_Image":
-      disk = r'\\.\{}:'.format(part) # disk
-      out_file = f"Part_{part}.img"  # out
+      disk = r'\\.\{}:'.format(part) # read disk
+      out_file = f"Part_{part}.img"  # out file
 
       # read & write
       with open(disk, 'rb') as disk:
           with open(out_file, 'wb') as w:
               while True:
-                  byte = disk.read(1048576) #1MB
+                  byte = disk.read(1048576) #1 MB
                   if not byte:
                       break  # Exit loop
                   # Write byte
                   w.write(byte)
-
+                  
 #============main===========
 from Disk.get_disk import get_drive_info
-import platform, os
+from Scan.scan_image import scan_image
+import platform, os, time
 
 
 while True:
    # Run form 
    sreen()
    info_part = get_disk_info()
+   print("\n#Scan_Image")
 #===================================
-   # select part
+   #Select Part
    sel_part = input("\n==> ")
 
+   # Exit
    if sel_part == "x":
       break
 #===================================
-   if int(sel_part) != 0:
+   #Scan_Image
+   if sel_part == "Scan_Image":
+      sreen()
+      image = input("Enter File Path: ")
+      
+      sreen()
+      print(f"=> {image}")
+      scan_image(image)
+   #===================================
+   # Check Select Part
+   elif int(sel_part) != 0:
       sreen()
 
-      # part sel
+      # get line
       info_part = info_part.splitlines()
       info_part = info_part[int(sel_part) - 1]
 
