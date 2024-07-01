@@ -6,9 +6,9 @@ def header():
       print(r.read())
 
 # Print partition info
-def get_disk_info():
+def get_info():
    # get disk info
-   drive_info = get_drive_info()
+   drive_info = get_partition_info()
 
    count = 0
    info_part = ""
@@ -50,23 +50,28 @@ def scan_image():
    print("Enter File Path"); image = input("\n==> "); header()
    print("=> ",image)
    # input & print
-   print("CR2/?"); file = input("\n==> "); header()
+   print("CR2/CR3/?"); file = input("\n==> "); header()
    print("=> ",image); print("=> ",file)
 
    if image != "x":      
+      # Extension
       if file == "CR2":
          print("\n")
-         scan_cr2(image)
+         scan_cr2_image(image)
+
+      elif file == "CR3":
+         print("\n")
+         scan_cr3_image(image)
 
 #=============================================
-from Tool.get_disk import get_drive_info
-from Tool.scan_cr2 import scan_cr2
+from Run.get_partition import get_partition_info
+from Run.ScanCR2 import scan_cr2_image
 import platform, os, time
 
 # Loop
 while True:
-   # Create Form
-   header(); info_part = get_disk_info()
+   # Create Form & call def get info
+   header(); info_part = get_info()
    print("\n#Scan_Image")
 
    # Choose partition
