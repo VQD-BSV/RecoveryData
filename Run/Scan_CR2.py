@@ -1,4 +1,4 @@
-def scan_cr2_image(image):
+def Scan_CR2_Image(image):
     markers = [b"\x49\x49\x2A\x00\x10\x00\x00\x00\x43\x52\x02\x00"]
     mid_marker = b"\xFF\xD8\xFF\xC4"
     end_marker = b"\xFF\xD9"

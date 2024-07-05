@@ -50,22 +50,19 @@ def scan_image():
    print("Enter File Path"); image = input("\n==> "); header()
    print("=> ",image)
    # input & print
-   print("CR2/CR3/?"); file = input("\n==> "); header()
+   print("CR2/?"); file = input("\n==> "); header()
    print("=> ",image); print("=> ",file)
 
    if image != "x":      
       # Extension
       if file == "CR2":
          print("\n")
-         scan_cr2_image(image)
-
-      elif file == "CR3":
-         print("\n")
-         scan_cr3_image(image)
-
+         Scan_CR2_Image(image)
 #=============================================
 from Run.get_partition import get_partition_info
-from Run.ScanCR2 import scan_cr2_image
+from Run.Scan_CR2 import Scan_CR2_Image
+from Run.Scan_CR3 import Scan_CR3_Partition
+
 import platform, os, time
 
 # Loop
